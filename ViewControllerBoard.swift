@@ -24,16 +24,18 @@ class ViewControllerBoard: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     var piece: Piece!
+    var moveLoc: String?
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView.tag == 0 {
             piece = pickerData[row]
-            return "\(pickerData[row])"
+            return "\(whitePieces[row])"
         }
         if pickerView.tag == 2 {
             piece = pickerData3[row]
-            return "\(pickerData3[row])"
+            return "\(blackPieces[row])"
         }
+        moveLoc = pickerData2[row]
         return "\(pickerData2[row])"
     }
 
@@ -159,39 +161,39 @@ class ViewControllerBoard: UIViewController, UIPickerViewDelegate, UIPickerViewD
 
     
     func makePieces(){
-        WhiteQRPawn = Piece(loc: "A2", type: true)
-        WhiteQKPawn = Piece(loc: "B2", type: true)
-        WhiteQBPawn = Piece(loc: "C2", type: true)
-        WhiteQPawn = Piece(loc: "D2", type: true)
-        WhiteKPawn = Piece(loc: "E2", type: true)
-        WhiteKBPawn = Piece(loc: "F2", type: true)
-        WhiteKKPawn = Piece(loc: "G2", type: true)
-        WhiteKRPawn = Piece(loc: "H2", type: true)
-        WhiteQRook = Piece(loc: "A1", type: true)
-        WhiteQKnight = Piece(loc: "B1", type: true)
-        WhiteQBishop = Piece(loc: "C1", type: true)
-        WhiteQueen = Piece(loc: "D1", type: true)
-        WhiteKing = Piece(loc: "E1", type: true)
-        WhiteKBishop = Piece(loc: "F1", type: true)
-        WhiteKKnight = Piece(loc: "G1", type: true)
-        WhiteKRook = Piece(loc: "H1", type: true)
+        WhiteQRPawn = Piece(loc: "A2", type: true, nombre: "whitePawn")
+        WhiteQKPawn = Piece(loc: "B2", type: true, nombre: "whitePawn")
+        WhiteQBPawn = Piece(loc: "C2", type: true, nombre: "whitePawn")
+        WhiteQPawn = Piece(loc: "D2", type: true, nombre: "whitePawn")
+        WhiteKPawn = Piece(loc: "E2", type: true, nombre: "whitePawn")
+        WhiteKBPawn = Piece(loc: "F2", type: true, nombre: "whitePawn")
+        WhiteKKPawn = Piece(loc: "G2", type: true, nombre: "whitePawn")
+        WhiteKRPawn = Piece(loc: "H2", type: true, nombre: "whitePawn")
+        WhiteQRook = Piece(loc: "A1", type: true, nombre: "whiteRook")
+        WhiteQKnight = Piece(loc: "B1", type: true, nombre: "whiteKnight")
+        WhiteQBishop = Piece(loc: "C1", type: true, nombre: "whiteBishop")
+        WhiteQueen = Piece(loc: "D1", type: true, nombre: "whiteQueen")
+        WhiteKing = Piece(loc: "E1", type: true, nombre: "whiteKing")
+        WhiteKBishop = Piece(loc: "F1", type: true, nombre: "whiteBishop")
+        WhiteKKnight = Piece(loc: "G1", type: true, nombre: "whiteKnight")
+        WhiteKRook = Piece(loc: "H1", type: true, nombre: "whiteRook")
         
-        BlackQRPawn = Piece(loc: "A7", type: false)
-        BlackQKPawn = Piece(loc: "B7", type: false)
-        BlackQBPawn = Piece(loc: "C7", type: false)
-        BlackQPawn = Piece(loc: "D7", type: false)
-        BlackKPawn = Piece(loc: "E7", type: false)
-        BlackKBPawn = Piece(loc: "F7", type: false)
-        BlackKKPawn = Piece(loc: "G7", type: false)
-        BlackKRPawn = Piece(loc: "H7", type: false)
-        BlackQRook = Piece(loc: "H8", type: false)
-        BlackQKnight = Piece(loc: "G8", type: false)
-        BlackQBishop = Piece(loc: "F8", type: false)
-        BlackQueen = Piece(loc: "E8", type: false)
-        BlackKing = Piece(loc: "D8", type: false)
-        BlackKBishop = Piece(loc: "C8", type: false)
-        BlackKKnight = Piece(loc: "B8", type: false)
-        BlackKRook = Piece(loc: "A8", type: false)
+        BlackQRPawn = Piece(loc: "A7", type: false, nombre: "blackPawn")
+        BlackQKPawn = Piece(loc: "B7", type: false, nombre: "blackPawn")
+        BlackQBPawn = Piece(loc: "C7", type: false, nombre: "blackPawn")
+        BlackQPawn = Piece(loc: "D7", type: false, nombre: "blackPawn")
+        BlackKPawn = Piece(loc: "E7", type: false, nombre: "blackPawn")
+        BlackKBPawn = Piece(loc: "F7", type: false, nombre: "blackPawn")
+        BlackKKPawn = Piece(loc: "G7", type: false, nombre: "blackPawn")
+        BlackKRPawn = Piece(loc: "H7", type: false, nombre: "blackPawn")
+        BlackQRook = Piece(loc: "H8", type: false, nombre: "blackRook")
+        BlackQKnight = Piece(loc: "G8", type: false, nombre: "blackKnight")
+        BlackQBishop = Piece(loc: "F8", type: false, nombre: "blackBishop")
+        BlackQueen = Piece(loc: "E8", type: false, nombre: "blackQueen")
+        BlackKing = Piece(loc: "D8", type: false, nombre: "blackKing")
+        BlackKBishop = Piece(loc: "C8", type: false, nombre: "blackBishop")
+        BlackKKnight = Piece(loc: "B8", type: false, nombre: "blackKnight")
+        BlackKRook = Piece(loc: "A8", type: false, nombre: "blackRook")
     }
         
     var turn = 1 //1 for white turn, -1 for black
@@ -199,6 +201,8 @@ class ViewControllerBoard: UIViewController, UIPickerViewDelegate, UIPickerViewD
     var pickerData: [Piece] = [Piece]()
     var pickerData2: [String] = [String]()
     var pickerData3: [Piece] = [Piece]()
+    var whitePieces: [String] = [String]()
+    var blackPieces: [String] = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -209,8 +213,10 @@ class ViewControllerBoard: UIViewController, UIPickerViewDelegate, UIPickerViewD
         makePieces()
         spaces = [A1,A2,A3,A4,A5,A6,A7,A8,B1,B2,B3,B4,B5,B6,B7,B8,C1,C2,C3,C4,C5,C6,C7,C8,D1,D2,D3,D4,D5,D6,D7,D8,E1,E2,E3,E4,E5,E6,E7,E8,F1,F2,F3,F4,F5,F6,F7,F8,G1,G2,G3,G4,G5,G6,G7,G8,H1,H2,H3,H4,H5,H6,H7,H8]
         pickerData = [WhiteQRPawn, WhiteQKPawn, WhiteQBPawn, WhiteQPawn, WhiteKPawn, WhiteKBPawn, WhiteKKPawn, WhiteKRPawn, WhiteQRook, WhiteQKnight, WhiteQBishop, WhiteQueen, WhiteKing, WhiteKBishop, WhiteKKnight, WhiteKRook]
+        whitePieces = ["WhiteQRPawn", "WhiteQKPawn", "WhiteQBPawn", "WhiteQPawn", "WhiteKPawn", "WhiteKBPawn", "WhiteKKPawn", "WhiteKRPawn", "WhiteQRook", "WhiteQKnight", "WhiteQBishop", "WhiteQueen", "WhiteKing", "WhiteKBishop", "WhiteKKnight", "WhiteKRook"]
         pickerData2 = ["A1","A2","A3","A4","A5","A6","A7","A8","B1","B2","B3","B4","B5","B6","B7","B8","C1","C2","C3","C4","C5","C6","C7","C8","D1","D2","D3","D4","D5","D6","D7","D8","E1","E2","E3","E4","E5","E6","E7","E8","F1","F2","F3","F4","F5","F6","F7","F8","G1","G2","G3","G4","G5","G6","G7","G8","H1","H2","H3","H4","H5","H6","H7","H8"]
         pickerData3 = [BlackQRPawn, BlackQKPawn, BlackQBPawn, BlackQPawn, BlackKPawn, BlackKBPawn, BlackKKPawn, BlackKRPawn, BlackQRook, BlackQKnight, BlackQBishop, BlackQueen, BlackKing, BlackKBishop, BlackKKnight, BlackKRook]
+        blackPieces = ["BlackQRPawn", "BlackQKPawn", "BlackQBPawn", "BlackQPawn", "BlackKPawn", "BlackKBPawn", "BlackKKPawn", "BlackKRPawn", "BlackQRook", "BlackQKnight", "BlackQBishop", "BlackQueen", "BlackKing", "BlackKBishop", "BlackKKnight", "BlackKRook"]
 
         
         blackPiecePV.delegate = self
@@ -229,7 +235,7 @@ class ViewControllerBoard: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     @IBAction func moveAction(_ sender: UIButton) {
-        if (turn == 1){
+        if (turn == 1){ //white move
             turn = turn * -1
             whiteMoveLabel.isHidden = true
             whitePiecePV.isHidden = true
@@ -241,16 +247,29 @@ class ViewControllerBoard: UIViewController, UIPickerViewDelegate, UIPickerViewD
             blackSquareLabel.isHidden = false
             //code to move
             var temp: Int = 0
-            for item in pickerData {
-                if (item.getLocation() == pickerData[temp]){
-                    //code to move
-                    /*
-                    
-                     */
+            var temp2: Int = 0
+            //var moveLoc: UIImageView!
+            for _ in pickerData2 {
+                if (piece.getLocation() == pickerData2[temp]){
+                    piece.location = pickerData2[temp]
+                    spaces[temp].image = nil
+                    temp = 0
                 }
+                temp += 1
             }
+            for _ in pickerData2 {
+                if (moveLoc == pickerData2[temp2]){
+                    spaces[temp2].image = UIImage(named: piece.getName())
+                    temp2 = 0
+                }
+                temp2 += 1
+            }
+            //self.viewDidLoad()
+            temp = 0
+            temp2 = 0
         }
-        else{
+        
+        else{ //black move
             turn = turn * -1
             blackMoveLabel.isHidden = true
             blackPiecePV.isHidden = true
@@ -261,6 +280,26 @@ class ViewControllerBoard: UIViewController, UIPickerViewDelegate, UIPickerViewD
             whiteSquarePV.isHidden = false
             whiteSquareLabek.isHidden = false
             //code to move
+            var temp: Int = 0
+            var temp2: Int = 0
+            //var moveLoc: UIImageView!
+            for _ in pickerData2 {
+                if (piece.getLocation() == pickerData2[temp]){
+                    piece.location = pickerData2[temp]
+                    spaces[temp].image = nil
+                }
+                temp += 1
+            }
+            for _ in pickerData2 {
+                if (moveLoc == pickerData2[temp2]){
+                    spaces[temp2].image = UIImage(named: piece.getName())
+                }
+                temp2 += 1
+            }
+            //self.viewDidLoad()
+            temp = 0
+            temp2 = 0
+
         }
     }
 }

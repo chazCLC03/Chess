@@ -14,10 +14,13 @@ class Piece {//UIImageView{
 
     var color: Bool! //true for white false for black
     
-    init(loc: String, type: Bool){
+    var name: String!
+    
+    init(loc: String, type: Bool, nombre: String){
         //super.init(image: image)
         location = loc
         color = type
+        name = nombre
     }
  
     /*
@@ -28,6 +31,10 @@ class Piece {//UIImageView{
     
     func getLocation() -> String{
         return location
+    }
+    
+    func getName() -> String{
+        return name
     }
     
 }
